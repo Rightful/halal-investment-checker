@@ -15,5 +15,24 @@ export default defineConfig({
   server: {
     port: 5173,
     open: true
+  },
+  build: {
+    chunkSizeWarningLimit: 1000,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          'vendor': [
+            'vue',
+            'vue-router',
+            'pinia',
+            'vuetify',
+            'chart.js',
+            'vue-chartjs'
+          ]
+        }
+      }
+    },
+    sourcemap: true,
+    target: 'esnext'
   }
 })
