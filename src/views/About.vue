@@ -2,32 +2,34 @@
   <v-container class="about" fluid>
     <!-- Hero Section -->
     <v-row class="hero-section">
-  <v-col cols="12" class="text-center">
-    <h1 class="text-h2 font-weight-bold gradient-text mb-4">
-      Halal Investment Checker
-    </h1>
-    <div class="text-h6 text-medium-emphasis mb-6">
-      Empowering ethical investment decisions through comprehensive<br />
-      Shariah compliance analysis
-    </div>
-    <div class="stats-container">
-      <v-chip-group class="stats-group">
-        <v-chip
-          v-for="(stat, index) in statistics"
-          :key="index"
-          size="x-large"
-          class="stat-chip"
-          color="primary"
-          variant="elevated"
-        >
-          <v-icon start>{{ stat.icon }}</v-icon>
-          <span class="font-weight-bold">{{ stat.value }}</span>
-          <span class="text-caption ms-1">{{ stat.label }}</span>
-        </v-chip>
-      </v-chip-group>
-    </div>
-  </v-col>
-</v-row>
+      <v-col cols="12" class="text-center">
+        <h1 class="text-h2 font-weight-bold gradient-text mb-4">
+          Halal Investment Checker
+        </h1>
+        <div class="text-h6 text-medium-emphasis mb-6">
+          Empowering ethical investment decisions through comprehensive<br />
+          Shariah compliance analysis
+        </div>
+        <div class="stats-container">
+          <div class="stats-group">
+            <v-chip
+              v-for="(stat, index) in statistics"
+              :key="index"
+              size="x-large"
+              class="stat-chip"
+              color="primary"
+              variant="elevated"
+            >
+              <v-icon start class="stat-icon">{{ stat.icon }}</v-icon>
+              <div class="stat-content">
+                <span class="font-weight-bold">{{ stat.value }}</span>
+                <span class="text-caption">{{ stat.label }}</span>
+              </div>
+            </v-chip>
+          </div>
+        </div>
+      </v-col>
+    </v-row>
 
     <!-- Main Content -->
     <v-row>
@@ -296,7 +298,11 @@ export default defineComponent({
 .hero-section {
   padding: 3rem 0 2rem 0;
   margin-bottom: 2rem;
-  background: linear-gradient(135deg, rgba(33, 150, 243, 0.05) 0%, rgba(33, 150, 243, 0.1) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(33, 150, 243, 0.05) 0%,
+    rgba(33, 150, 243, 0.1) 100%
+  );
   border-bottom: 1px solid rgba(0, 0, 0, 0.08);
 }
 
@@ -309,17 +315,18 @@ export default defineComponent({
 
 /* Stats Section */
 .stats-container {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 2rem;
+  width: 100%;
+  padding: 0 1rem;
 }
 
 .stats-group {
-  display: inline-flex !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   gap: 1rem;
-  flex-wrap: wrap;
-  justify-content: center;
+  width: 100%;
   max-width: 800px;
+  margin: 0 auto;
 }
 
 .stat-chip {
@@ -329,6 +336,19 @@ export default defineComponent({
   transition: transform 0.3s ease;
   background-color: rgba(33, 150, 243, 0.1) !important;
   border: 1px solid #2196f3;
+  display: flex !important;
+  align-items: center;
+}
+
+.stat-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.25rem;
+}
+
+.stat-icon {
+  margin-right: 1rem;
 }
 
 .stat-chip:hover {
@@ -340,6 +360,19 @@ export default defineComponent({
 .stat-chip .font-weight-bold,
 .stat-chip .text-caption {
   color: #1976d2 !important;
+}
+
+@media (min-width: 601px) {
+  .stats-group {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .stat-chip {
+    width: auto;
+    min-width: 200px;
+  }
 }
 
 /* Card Styles */
@@ -426,13 +459,13 @@ export default defineComponent({
 }
 
 /* Typography */
-.text-h5, 
+.text-h5,
 .text-h6 {
   color: rgba(0, 0, 0, 0.87);
   font-weight: 500;
 }
 
-.text-body-1, 
+.text-body-1,
 .text-body-2 {
   color: rgba(0, 0, 0, 0.7);
 }
@@ -443,7 +476,11 @@ export default defineComponent({
 
 /* Disclaimer */
 .disclaimer-alert {
-  background: linear-gradient(45deg, rgba(33, 150, 243, 0.05), rgba(33, 150, 243, 0.1));
+  background: linear-gradient(
+    45deg,
+    rgba(33, 150, 243, 0.05),
+    rgba(33, 150, 243, 0.1)
+  );
   border-left: 4px solid #2196f3;
   color: rgba(0, 0, 0, 0.87);
 }
