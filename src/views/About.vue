@@ -378,11 +378,22 @@ export default defineComponent({
   background: linear-gradient(45deg, #1976d2, #2196f3);
   padding: 1.5rem;
   border-radius: 8px 8px 0 0;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
 
-.gradient-bg .text-h5,
-.gradient-bg .v-icon,
-.gradient-bg span {
+.gradient-bg .text-h5 {
+  color: white !important;
+  line-height: 1.3;
+  font-size: 1.5rem !important;
+  flex: 1;
+  min-width: 0;
+  word-wrap: break-word;
+}
+
+.gradient-bg .v-icon {
+  flex-shrink: 0;
   color: white !important;
 }
 
@@ -441,7 +452,7 @@ export default defineComponent({
   overflow: visible !important;
   white-space: normal !important;
   flex: 1;
-  min-width: 0; /* Add this to fix text overflow */
+  min-width: 0;
 }
 
 .criteria-item :deep(.v-list-item-title) {
@@ -476,17 +487,6 @@ export default defineComponent({
   padding-top: 0.25rem;
 }
 
-@media (min-width: 601px) {
-  .criteria-item {
-    flex-direction: row;
-    align-items: flex-start;
-  }
-
-  .criteria-item :deep(.v-list-item__content) {
-    padding-right: 1rem;
-  }
-}
-
 /* Timeline */
 .timeline-card {
   background-color: #f8f9fa;
@@ -494,6 +494,9 @@ export default defineComponent({
   transition: all 0.3s ease;
   border: 1px solid rgba(0, 0, 0, 0.08);
   width: calc(100% - 2rem);
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  min-width: 0; /* Add this */
 }
 
 .process-card .v-timeline {
@@ -504,11 +507,21 @@ export default defineComponent({
 .timeline-card .v-card-title {
   padding: 1rem 1rem 0.5rem;
   line-height: 1.4;
+  font-size: 1.1rem;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: normal !important; /* Add this */
+  min-width: 0; /* Add this */
 }
 
 .timeline-card .v-card-text {
   padding: 0.5rem 1rem 1rem;
   line-height: 1.6;
+  font-size: 1rem;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: normal !important; /* Add this */
+  min-width: 0; /* Add this */
 }
 
 .process-icon {
@@ -535,15 +548,24 @@ export default defineComponent({
     width: auto;
     min-width: 200px;
   }
+
+  .criteria-item {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  .criteria-item :deep(.v-list-item__content) {
+    padding-right: 1rem;
+  }
 }
 
 @media (max-width: 960px) {
   .hero-section {
-    padding: 3rem 1rem;
+    padding: 2.5rem 1rem;
   }
 
   .gradient-text {
-    font-size: 2.5rem !important;
+    font-size: 2.25rem !important;
   }
 
   .feature-card {
@@ -565,6 +587,19 @@ export default defineComponent({
     font-size: 1rem !important;
   }
 
+  .gradient-bg {
+    padding: 1rem;
+    gap: 0.75rem;
+  }
+
+  .gradient-bg .text-h5 {
+    font-size: 1.25rem !important;
+  }
+
+  .gradient-bg .v-icon {
+    font-size: 24px !important;
+  }
+
   .stat-chip {
     width: 100% !important;
     max-width: 280px;
@@ -575,19 +610,25 @@ export default defineComponent({
     gap: 0.5rem;
   }
 
+  .criteria-item {
+    padding: 1rem;
+  }
+
   .timeline-card {
-    margin-left: 1rem;
-    width: calc(100% - 1.5rem);
+    margin-left: 0.75rem;
+    width: calc(100% - 1rem);
   }
 
   .timeline-card .v-card-title {
-    font-size: 1rem !important;
+    font-size: 0.95rem !important;
     padding: 0.75rem 0.75rem 0.375rem;
+    line-height: 1.3;
   }
 
   .timeline-card .v-card-text {
-    font-size: 0.9rem !important;
+    font-size: 0.875rem !important;
     padding: 0.375rem 0.75rem 0.75rem;
+    line-height: 1.4;
   }
 
   .process-card .v-timeline {
@@ -597,10 +638,57 @@ export default defineComponent({
 
   .process-icon {
     border-width: 2px;
+    width: 36px !important;
+    height: 36px !important;
+  }
+
+  .process-icon .v-icon {
+    font-size: 18px !important;
+  }
+  .feature-card {
+    padding: 1rem;
   }
 
   .v-card.pa-6 {
     padding: 1rem !important;
+  }
+}
+
+@media (max-width: 390px) {
+  .gradient-bg .text-h5 {
+    font-size: 1.1rem !important;
+  }
+
+  .gradient-bg .v-icon {
+    font-size: 20px !important;
+  }
+  .timeline-card {
+    margin-left: 0.5rem;
+    width: calc(100% - 0.75rem);
+  }
+
+  .timeline-card .v-card-title {
+    font-size: 0.9rem !important;
+    padding: 0.625rem 0.625rem 0.3125rem;
+  }
+
+  .timeline-card .v-card-text {
+    font-size: 0.85rem !important;
+    padding: 0.3125rem 0.625rem 0.625rem;
+  }
+
+  .process-card .v-timeline {
+    padding-left: 0.125rem !important;
+    padding-right: 0.125rem !important;
+  }
+
+  .process-icon {
+    width: 32px !important;
+    height: 32px !important;
+  }
+
+  .process-icon .v-icon {
+    font-size: 16px !important;
   }
 }
 </style>
