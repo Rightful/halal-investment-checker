@@ -294,15 +294,23 @@ export default defineComponent({
   min-height: 100vh;
 }
 
+/* Typography */
+.text-h5,
+.text-h6 {
+  color: rgba(0, 0, 0, 0.87);
+  font-weight: 500;
+}
+
+.text-body-1,
+.text-body-2 {
+  color: rgba(0, 0, 0, 0.7);
+}
+
 /* Hero Section */
 .hero-section {
   padding: 3rem 0 2rem 0;
   margin-bottom: 2rem;
-  background: linear-gradient(
-    135deg,
-    rgba(33, 150, 243, 0.05) 0%,
-    rgba(33, 150, 243, 0.1) 100%
-  );
+  background: linear-gradient(135deg, rgba(33, 150, 243, 0.05) 0%, rgba(33, 150, 243, 0.1) 100%);
   border-bottom: 1px solid rgba(0, 0, 0, 0.08);
 }
 
@@ -317,10 +325,11 @@ export default defineComponent({
 .stats-container {
   width: 100%;
   padding: 0 1rem;
+  margin-bottom: 2rem;
 }
 
 .stats-group {
-  display: flex;
+  display: flex !important;
   flex-direction: column;
   align-items: center;
   gap: 1rem;
@@ -330,14 +339,16 @@ export default defineComponent({
 }
 
 .stat-chip {
-  min-width: 180px;
-  height: 56px !important;
-  padding: 0 1.5rem !important;
-  transition: transform 0.3s ease;
-  background-color: rgba(33, 150, 243, 0.1) !important;
-  border: 1px solid #2196f3;
+  width: 100%;
+  max-width: 280px;
+  min-height: 64px;
+  padding: 0.75rem 1.5rem !important;
   display: flex !important;
   align-items: center;
+  justify-content: flex-start;
+  background: linear-gradient(135deg, rgba(33, 150, 243, 0.1) 0%, rgba(33, 150, 243, 0.15) 100%) !important;
+  border: 1px solid rgba(33, 150, 243, 0.3) !important;
+  transition: all 0.3s ease;
 }
 
 .stat-content {
@@ -360,19 +371,6 @@ export default defineComponent({
 .stat-chip .font-weight-bold,
 .stat-chip .text-caption {
   color: #1976d2 !important;
-}
-
-@media (min-width: 601px) {
-  .stats-group {
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
-  .stat-chip {
-    width: auto;
-    min-width: 200px;
-  }
 }
 
 /* Card Styles */
@@ -430,13 +428,63 @@ export default defineComponent({
   border: 1px solid rgba(0, 0, 0, 0.08);
   transition: all 0.3s ease;
   margin-bottom: 1rem;
-  padding: 1rem;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
-.criteria-item:hover {
-  transform: translateX(8px);
-  background-color: white;
-  border-color: #2196f3;
+.criteria-item :deep(.v-list-item__content) {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  overflow: visible !important;
+  white-space: normal !important;
+  flex: 1;
+  min-width: 0; /* Add this to fix text overflow */
+}
+
+.criteria-item :deep(.v-list-item-title) {
+  white-space: normal !important;
+  overflow: visible !important;
+  text-overflow: unset !important;
+  line-height: 1.5 !important;
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem !important;
+  width: 100%;
+  display: block;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+.criteria-item :deep(.v-list-item-subtitle) {
+  white-space: normal !important;
+  overflow: visible !important;
+  text-overflow: unset !important;
+  line-height: 1.6 !important;
+  opacity: 0.9;
+  color: rgba(0, 0, 0, 0.7) !important;
+  width: 100%;
+  word-wrap: break-word;
+  display: block;
+  hyphens: auto;
+}
+
+.criteria-item :deep(.v-list-item__prepend) {
+  align-self: flex-start;
+  margin-right: 1.5rem;
+  flex: 0 0 auto;
+  padding-top: 0.25rem;
+}
+
+@media (min-width: 601px) {
+  .criteria-item {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  .criteria-item :deep(.v-list-item__content) {
+    padding-right: 1rem;
+  }
 }
 
 /* Timeline */
@@ -445,12 +493,22 @@ export default defineComponent({
   margin-left: 1.5rem;
   transition: all 0.3s ease;
   border: 1px solid rgba(0, 0, 0, 0.08);
+  width: calc(100% - 2rem);
 }
 
-.timeline-card:hover {
-  transform: translateX(4px);
-  background-color: white;
-  border-color: #2196f3;
+.process-card .v-timeline {
+  padding-left: 0.5rem !important;
+  padding-right: 0.5rem !important;
+}
+
+.timeline-card .v-card-title {
+  padding: 1rem 1rem 0.5rem;
+  line-height: 1.4;
+}
+
+.timeline-card .v-card-text {
+  padding: 0.5rem 1rem 1rem;
+  line-height: 1.6;
 }
 
 .process-icon {
@@ -458,34 +516,27 @@ export default defineComponent({
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* Typography */
-.text-h5,
-.text-h6 {
-  color: rgba(0, 0, 0, 0.87);
-  font-weight: 500;
-}
-
-.text-body-1,
-.text-body-2 {
-  color: rgba(0, 0, 0, 0.7);
-}
-
-.v-card-title:not(.gradient-bg) {
-  color: #1976d2 !important;
-}
-
 /* Disclaimer */
 .disclaimer-alert {
-  background: linear-gradient(
-    45deg,
-    rgba(33, 150, 243, 0.05),
-    rgba(33, 150, 243, 0.1)
-  );
+  background: linear-gradient(45deg, rgba(33, 150, 243, 0.05), rgba(33, 150, 243, 0.1));
   border-left: 4px solid #2196f3;
   color: rgba(0, 0, 0, 0.87);
 }
 
 /* Responsive Design */
+@media (min-width: 601px) {
+  .stats-group {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .stat-chip {
+    width: auto;
+    min-width: 200px;
+  }
+}
+
 @media (max-width: 960px) {
   .hero-section {
     padding: 3rem 1rem;
@@ -502,25 +553,54 @@ export default defineComponent({
 
 @media (max-width: 600px) {
   .hero-section {
-    padding: 2rem 0 1.5rem 0;
+    padding: 2rem 1rem;
     margin-bottom: 1.5rem;
   }
 
   .gradient-text {
-    font-size: 2rem !important;
+    font-size: 1.75rem !important;
   }
 
-  .timeline-card {
-    margin-left: 1rem;
+  .text-h6 {
+    font-size: 1rem !important;
   }
 
   .stat-chip {
-    min-width: 250px;
-    margin: 0.25rem auto !important;
+    width: 100% !important;
+    max-width: 280px;
+    margin: 0.25rem 0;
   }
 
   .stats-group {
     gap: 0.5rem;
+  }
+
+  .timeline-card {
+    margin-left: 1rem;
+    width: calc(100% - 1.5rem);
+  }
+
+  .timeline-card .v-card-title {
+    font-size: 1rem !important;
+    padding: 0.75rem 0.75rem 0.375rem;
+  }
+
+  .timeline-card .v-card-text {
+    font-size: 0.9rem !important;
+    padding: 0.375rem 0.75rem 0.75rem;
+  }
+
+  .process-card .v-timeline {
+    padding-left: 0.25rem !important;
+    padding-right: 0.25rem !important;
+  }
+
+  .process-icon {
+    border-width: 2px;
+  }
+
+  .v-card.pa-6 {
+    padding: 1rem !important;
   }
 }
 </style>
